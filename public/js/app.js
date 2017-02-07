@@ -16,3 +16,9 @@ function slugify(text)
     .replace(/-+$/, '');            // Trim - from end of text
 }
 
+
+function to( u ) {
+
+  location.assign( u );
+
+}

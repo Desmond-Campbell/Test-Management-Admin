@@ -47,3 +47,19 @@
 .no-margins {
 	margin: 0px !important;
 }
+
+.padding {
+	padding: 15px;
+}
+
+.border-left {
+	border-left: solid 1px #EEE;
+}
+
+.border-bottom {
+	border-bottom: solid 1px #EEE;
+}
+
+.push-right {
+	float: right;
+}

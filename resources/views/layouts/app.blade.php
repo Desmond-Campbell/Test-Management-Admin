@@ -26,13 +26,14 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-    <link href="{{ 'css/vendor/bootstrap/bootstrap.min.css' }}" rel="stylesheet">
-    <link href="{{ 'js/vendor/node_modules/angular-material/angular-material.css' }}" rel="stylesheet">
-    <link href="{{ 'css/vendor/bootstrap/ie10-viewport-bug-workaround.css' }}" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/js/vendor/node_modules/angular-material/angular-material.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="/css/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     @yield('styles')
 
-    <script src="{{ 'js/vendor/bootstrap/ie-emulation-modes-warning.js' }}"></script>
+    <script src="/js/vendor/bootstrap/ie-emulation-modes-warning.js"></script>
 
     <!-- Scripts -->
     <script>
@@ -41,7 +42,7 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
         ]) !!};
     </script>
 </head>
-<body ng-app="testmy">
+<body ng-app="testmy" ng-cloak>
     <div id="app">
         <nav class="navbar navbar-default navbar-inverse">
             <div class="container">
@@ -49,7 +50,7 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="sr-only">{{___( "Toggle Navigation" )}}</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -71,9 +72,10 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">{{___( "Login" )}}</a></li>
+                            <li><a href="{{ route('register') }}">{{___( "Register" )}}</a></li>
                         @else
+                            <li><a href="/networks">{{___( "Networks" )}}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -84,7 +86,7 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{___( "Logout" )}}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -103,17 +105,17 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
     </div>
 
     <!-- Scripts -->
-    <script src="{{ '/js/vendor/jquery-2.2.1.min.js' }}"></script>
-    <script src="{{ '/js/vendor/node_modules/angular/angular.js' }}"></script>
-    <script src="{{ '/js/vendor/node_modules/angular-aria/angular-aria.js' }}"></script>
-    <script src="{{ '/js/vendor/node_modules/angular-animate/angular-animate.js' }}"></script>
-    <script src="{{ '/js/vendor/node_modules/angular-material/angular-material.js' }}"></script>
-    <script src="{{ '/js/vendor/moment.js' }}"></script>
-    <script src="{{ '/js/vendor/angular-moment.js' }}"></script>
+    <script src="/js/vendor/jquery-2.2.1.min.js"></script>
+    <script src="/js/vendor/node_modules/angular/angular.js"></script>
+    <script src="/js/vendor/node_modules/angular-aria/angular-aria.js"></script>
+    <script src="/js/vendor/node_modules/angular-animate/angular-animate.js"></script>
+    <script src="/js/vendor/node_modules/angular-material/angular-material.js"></script>
+    <script src="/js/vendor/moment.js"></script>
+    <script src="/js/vendor/angular-moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
     <script src="/js/vendor/angular-timezone-selector/angular-timezone-selector.js"></script>
     <script src="/js/app.js"></script>
     @yield('javascript')
-    <script src="{{ '/js/vendor/bootstrap/bootstrap.min.js' }}"></script>
+    <script src="/js/vendor/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>

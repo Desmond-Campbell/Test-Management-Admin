@@ -41,3 +41,25 @@ function slugify($text)
   return $text;
 
 }
+
+
+function arg( $A, $key, $default = null ) {
+
+  $A = (array) $A;
+
+  if ( !empty( $A[$key] ) ) return $A[$key];
+
+  return $default;
+
+}
+
+function try_json_decode( $string ) {
+
+  $string = @json_decode( $string );
+  
+  if ( $string ) $object = $string;
+  else $object = (object) [];
+
+  return $object;
+
+}

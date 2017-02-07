@@ -17,6 +17,8 @@ class CreateNetworkRelationsTable extends Migration
             $table->increments('id');
             $table->integer('network_id');
             $table->integer('user_id');
+            $table->text('permissions')->nullable();
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

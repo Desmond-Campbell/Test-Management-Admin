@@ -17,7 +17,7 @@
 
 			<div class="panel panel-default">
 
-				<div class="panel-body">
+				<div class="padding">
 
 					@if ( !$networks )
 					<h3 class="no-margin-top">{{___( "You are currently not a part of any network." )}}</h3>
@@ -27,14 +27,12 @@
 					@else
 
 					<div layout="row">
-						<div flex="20">
-							<ul class="list-group">
-								<li class="list-group-item"><a href="/networks">View Networks</a></li>
-								<li class="list-group-item"><a href="/create-network">Create Network</a></li>
-							</ul>
-						</div>
-						<div flex="5"></div>
-						<div flex="70">
+						
+						<div flex="80">
+
+						<a href="/create-network" class="btn btn-success"><i class="fa fa-plus"></i> &nbsp;{{___( "Create a Network" )}}</a>
+
+							<br /><br />
 
 							<table class="table">
 
@@ -52,7 +50,7 @@
 									<td>{{$n->name}}</td>
 									@if ( $n->is_owner ) <td><strong>{{___( "Owner" )}}</strong></td>
 									@else <td>{{___( "Member" )}}</td> @endif
-									<td>@if ( $n->owner ) <a href="/network/{{$n->id}}">{{___( "Manage" )}}</a> @endif <a href="{{$n->url}}">{{___( "Visit" )}}</a></td>
+									<td>@if ( $n->is_owner ) <a href="/network/{{$n->id}}/edit"><i class="fa fa-gear"></i> &nbsp;{{___( "Manage" )}}</a>  &nbsp; &nbsp; <a href="/network/{{$n->id}}/people"><i class="fa fa-group"></i> &nbsp;{{___( "People" )}}</a> @endif &nbsp; &nbsp; <a href="{{$n->url}}"><i class="fa fa-paper-plane"></i> &nbsp;{{___( "Visit" )}}</a></td>
 								</tr>
 
 							@endforeach
