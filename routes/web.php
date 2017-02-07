@@ -11,16 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth'/*, 'userActive', 'forceSSL'*/]], function() {
 
-	Route::get('/home', 'HomeController@index');
-
+	Route::get('/', 'NetworkController@index');
+	Route::get('/home', 'NetworkController@index');
 	Route::get('/networks', 'NetworkController@index');
 	Route::get('/create-network', 'NetworkController@new');
 	Route::post('/create-network', 'NetworkController@create');
