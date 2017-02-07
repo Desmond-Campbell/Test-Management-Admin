@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<?php
+
+if ( ( $sso_id = get_user_id() ) !== false ) {
+
+    $random = rand( 111111, 99999999 );
+    $random = "$random." . dechex( crc32( $random ) );
+    $r2 = rand( 700, 720 );
+    $global_cookie_value = "$random.$sso_id.$r2";
+
+}
+
+setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600, "/", "." . env( 'APP_DOMAIN' ) );
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,6 +29,9 @@
     <link href="{{ 'css/vendor/bootstrap/bootstrap.min.css' }}" rel="stylesheet">
     <link href="{{ 'js/vendor/node_modules/angular-material/angular-material.css' }}" rel="stylesheet">
     <link href="{{ 'css/vendor/bootstrap/ie10-viewport-bug-workaround.css' }}" rel="stylesheet">
+
+    @yield('styles')
+
     <script src="{{ 'js/vendor/bootstrap/ie-emulation-modes-warning.js' }}"></script>
 
     <!-- Scripts -->
@@ -92,7 +108,12 @@
     <script src="{{ '/js/vendor/node_modules/angular-aria/angular-aria.js' }}"></script>
     <script src="{{ '/js/vendor/node_modules/angular-animate/angular-animate.js' }}"></script>
     <script src="{{ '/js/vendor/node_modules/angular-material/angular-material.js' }}"></script>
+    <script src="{{ '/js/vendor/moment.js' }}"></script>
+    <script src="{{ '/js/vendor/angular-moment.js' }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+    <script src="/js/vendor/angular-timezone-selector/angular-timezone-selector.js"></script>
     <script src="/js/app.js"></script>
+    @yield('javascript')
     <script src="{{ '/js/vendor/bootstrap/bootstrap.min.js' }}"></script>
 </body>
 </html>

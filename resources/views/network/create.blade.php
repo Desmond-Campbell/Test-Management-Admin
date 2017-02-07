@@ -4,6 +4,10 @@
 {{ ___( "Create a Network" )}}
 @stop
 
+@section('styles')
+  <link rel="stylesheet" href="/js/vendor/angular-timezone-selector/angular-timezone-selector.css">
+@stop
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -17,9 +21,19 @@
 
 			<div class="panel panel-default" ng-controller="CreateCtrl">
 
-				<div class="panel-body" ng-show="!newnetwork.url">
+				<div class="panel-body" ng-show="!newnetwork.url && !working">
 
 					<form class="form" onbeforesubmit="return false">
+
+						<div layout-gt-xs="row">
+
+		          <md-input-container flex-gt-xs>
+
+		            <timezone-selector ng-model="network.timezone"></timezone-selector>
+
+		          </md-input-container>
+
+		        </div>
 
 		        <div layout-gt-xs="row">
 
@@ -60,7 +74,7 @@
 
 				</div>
 
-				<div class="panel-body" ng-show="newnetwork.url">
+				<div class="panel-body" ng-show="newnetwork.url && !working">
 
 					<h3>{{___( "Congratulations! Your new network is ready." )}}</h3>
 
@@ -68,8 +82,19 @@
 				
 				</div>
 
+				<div class="panel-body" ng-show="working">
+					<h4>{{___( "Creating network... Please wait." )}}</h4>
+				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
 @endsection
+
+@section('javascript')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.0/moment-timezone-with-data.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
+  <script src="/js/controllers/CreateCtrl.js"></script>
+@stop

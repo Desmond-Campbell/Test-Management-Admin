@@ -123,6 +123,7 @@ return [
     */
 
     'cookie' => 'saastest_global',
+    'global_cookie' => 'saastest_global_name',
 
     /*
     |--------------------------------------------------------------------------

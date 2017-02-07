@@ -10,14 +10,13 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class NetworkController extends Controller
 {
 
   public function __construct( Request $r )
   {
-
-    if ( $r->input( 'request-type' ) == 'full-template' ) Config::set( 'pageconfig', 'full-template' );
 
   }
 
@@ -64,6 +63,7 @@ class NetworkController extends Controller
   public function create( Request $r ) {
 
     $name = trim( $r->input( 'name' ) );
+    $timezone = trim( $r->input( 'timezone' ) );
     
     $domain = slugify( $r->input( 'domain' ) );
   
@@ -110,7 +110,8 @@ class NetworkController extends Controller
       $newnetwork = [ 
                       'name' => $name, 
                       'user_id' => $user_id, 
-                      'domain' => $domain 
+                      'domain' => $domain, 
+                      'timezone' => $timezone 
                     ];
 
       $n = Networks::create( $newnetwork );
@@ -121,9 +122,14 @@ class NetworkController extends Controller
       $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
       $database = "dev_net_$idfill";
 
-      shell_exec( "mysql --user=root --password=s3cr3t -e 'CREATE DATABASE $database' ");
-      shell_exec( "php $docroot/artisan migratenetwork --domain $domain");
-      shell_exec( "php $docroot/artisan createnetworkowner --database $database --sso_id $user_id --sso_name '$name'");
+      $user = User::find( $user_id );
+
+      if ( $user ) $username = $user->name;
+      else $username = $name;
+
+      $output = shell_exec( "mysql --user=root --password=s3cr3t -e 'CREATE DATABASE $database' ");
+      $output .= "\n\n" . shell_exec( "php $docroot/artisan migratenetwork --domain $domain");
+      $output .= "\n\n" . shell_exec( "php $docroot/artisan networkconfig --database $database --sso_id $user_id --sso_name '$username' --sso_timezone '$timezone' --sso_network '$name'");
 
       Networks::find( $id )->update( [ 'status' => 1 ] );
 
@@ -131,7 +137,7 @@ class NetworkController extends Controller
 
       $newnetwork['url'] = 'http://' . $domain . '.' . env( 'APP_DOMAIN' ) . '/';
 
-      $result = [ 'network' => $newnetwork ];
+      $result = [ 'network' => $newnetwork, 'output' => $output ];
 
     }
 
