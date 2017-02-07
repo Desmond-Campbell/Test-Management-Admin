@@ -12,7 +12,7 @@
 			<h1>{{___( "Networks" )}}</h1>
 
 			<div class="alert alert-info-light">
-				{{___( "A network is the space you create for your company or organisation. Inside your network, you can add people and projects, and manage tests for individual projects." ) }}
+				<big>{{___( "A network is the space you create for your company or organisation. Inside your network, you can add people and projects, and manage tests for individual projects." ) }}</big>
 			</div>
 
 			<div class="panel panel-default">

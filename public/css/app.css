@@ -1,3 +1,13 @@
+a, a:visited, a:active, a:focus {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/**************/
+
 .alert-info-inverse {
 	border: solid 1px #A2BAC4;
 	color: #345A75;
@@ -62,4 +72,22 @@
 
 .push-right {
 	float: right;
+}
+
+
+.navbar-inverse {
+	background: #3d4970 !important;
+}
+
+.navbar-right li:hover a,
+.navbar-right li:focus a,
+.navbar-right li:active a {
+	background: #536499 !important;
+}
+
+.tagline-text {
+	color: #CDD4E4;
+	font-weight: bold;
+	padding-top: 10px;
+	display:block;
 }

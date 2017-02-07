@@ -25,6 +25,7 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/icon.png">
 
     <link href="/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/js/vendor/node_modules/angular-material/angular-material.css" rel="stylesheet">
@@ -57,8 +58,8 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ env('APP_NAME') }}
+                    <a class="navbar-brand" href="http://www.{{ env('APP_DOMAIN') }}">
+                        <img src="/img/st-slogan.png" style="height: 24px; margin-top: -2px !important" />
                     </a>
                 </div>
 

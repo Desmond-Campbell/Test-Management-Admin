@@ -39,6 +39,24 @@
 
 		          <md-input-container flex-gt-xs>
 
+		            <label>{{__( "Plan" )}}</label>
+		            
+		            <md-select ng-model="network.plan" required>
+		            	<md-option value="Basic">{{___( "Basic" )}} - <em>{{___( "Free for beta period, until further notice." )}}</em></md-option>
+		            </md-select>
+
+		            <small class="help-block" ng-show="network.plan == 'Basic'">
+		            	{{___( "Beta users will get a special discount when we start to charge for the service." )}}
+		            </small>
+
+		          </md-input-container>
+
+		        </div>
+
+		        <div layout-gt-xs="row">
+
+		          <md-input-container flex-gt-xs>
+
 		            <label>{{__( "Network Name" )}}</label>
 		            <input class="md-block input-lg md-no-underline" 
 		                  id="network-name"
@@ -78,7 +96,7 @@
 
 					<h3>{{___( "Congratulations! Your new network is ready." )}}</h3>
 
-					<h5>{{___( "Link: " )}}<a href="@{{newnetwork.url}}">@{{newnetwork.url}}</a></h5>
+					<h4>{{___( "Click the following link to enter your network: " )}}<br /><br /><a href="@{{newnetwork.url}}">@{{newnetwork.url}}</a></h4>
 				
 				</div>
 

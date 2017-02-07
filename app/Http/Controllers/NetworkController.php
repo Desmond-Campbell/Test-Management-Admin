@@ -65,6 +65,7 @@ class NetworkController extends Controller
 
     $name = trim( $r->input( 'name' ) );
     $timezone = trim( $r->input( 'timezone' ) );
+    $plan = trim( $r->input( 'plan' ) );
     
     $domain = slugify( $r->input( 'domain' ) );
   
@@ -74,7 +75,11 @@ class NetworkController extends Controller
 
       $err = [ 'errors' => ___( 'Please enter a name for your network.' ), 'target' => 'name' ];
 
-    } elseif ( strlen( $name ) > 72 ) {
+    } elseif ( !$plan ) {
+
+      $err = [ 'errors' => ___( 'Please enter a plan for this new network.' ), 'target' => 'plan' ];
+
+    }elseif ( strlen( $name ) > 72 ) {
 
       $n = strlen( $name ) - 50;
       $chars = $n != 1 ? ___( 'characters' ) : ___( 'character' );
@@ -134,7 +139,7 @@ class NetworkController extends Controller
 
       Networks::find( $id )->update( [ 'status' => 1 ] );
 
-      NetworkRelations::create( [ 'user_id' => $user_id, 'network_id' => $id, 'permissions' => '["network_owner"]' ] );
+      NetworkRelations::create( [ 'user_id' => $user_id, 'network_id' => $id, 'permissions' => '["network_owner"]', 'created_by' => $user_id ] );
 
       $newnetwork['url'] = 'http://' . $domain . '.' . env( 'APP_DOMAIN' ) . '/';
 

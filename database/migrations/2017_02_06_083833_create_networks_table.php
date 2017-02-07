@@ -19,6 +19,7 @@ class CreateNetworksTable extends Migration
             $table->string('domain', 64);
             $table->integer('user_id');
             $table->string('timezone', 50);
+            $table->string('plan', 50);
             $table->smallInteger('status')->nullable()->default(0);
             $table->timestamps();
         });
