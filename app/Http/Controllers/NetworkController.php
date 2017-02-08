@@ -117,7 +117,8 @@ class NetworkController extends Controller
                       'name' => $name, 
                       'user_id' => $user_id, 
                       'domain' => $domain, 
-                      'timezone' => $timezone 
+                      'timezone' => $timezone,
+                      'plan' => $plan 
                     ];
 
       $n = Networks::create( $newnetwork );

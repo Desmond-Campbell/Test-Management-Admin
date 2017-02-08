@@ -34,6 +34,10 @@ app.controller('CreateCtrl', ['$scope', '$http', function ( $scope, $http ) {
 
       function () {
 
+        $scope.working = false;
+
+        _alert( 'We were not able to create your network. Sorry about that. Please contact support.' );
+
       });
 
     }
