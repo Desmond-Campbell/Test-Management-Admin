@@ -134,7 +134,10 @@ class NetworkController extends Controller
       if ( $user ) $username = $user->name;
       else $username = $name;
 
-      $output = shell_exec( "mysql --user=root --password=s3cr3t -e 'CREATE DATABASE $database' ");
+      $db_user = env( 'DB_USER' );
+      $db_password = env( 'DB_PASSWORD' );
+
+      $output = shell_exec( "mysql --user=$db_user --password=$db_password -e 'CREATE DATABASE $database' ");
       $output .= "\n\n" . shell_exec( "php $docroot/artisan migratenetwork --domain $domain");
       $output .= "\n\n" . shell_exec( "php $docroot/artisan networkconfig --database $database --sso_id $user_id --sso_name '$username' --sso_timezone '$timezone' --sso_network '$name'");
 
