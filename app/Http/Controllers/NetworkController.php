@@ -134,7 +134,7 @@ class NetworkController extends Controller
       if ( $user ) $username = $user->name;
       else $username = $name;
 
-      $db_user = env( 'DB_USER' );
+      $db_user = env( 'DB_USERNAME' );
       $db_password = env( 'DB_PASSWORD' );
 
       $output = shell_exec( "mysql --user=$db_user --password=$db_password -e 'CREATE DATABASE $database' ");
