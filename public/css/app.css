@@ -91,3 +91,7 @@ a:hover {
 	padding-top: 10px;
 	display:block;
 }
+
+.pull-up {
+	margin-top: -24px !important;
+}

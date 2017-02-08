@@ -126,7 +126,7 @@ class NetworkController extends Controller
       $docroot = str_replace( "testmy", "test", base_path() );
 
       $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
-      $database = "dev_net_$idfill";
+      $database = env( 'NETWORK_DATABASE_PREFIX' ) . "$idfill";
 
       $user = User::find( $user_id );
 
@@ -241,7 +241,7 @@ class NetworkController extends Controller
         
         $docroot = str_replace( "testmy", "test", base_path() );
         $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
-        $database = "dev_net_$idfill";
+        $database = env( 'NETWORK_DATABASE_PREFIX' ) . "$idfill";
         shell_exec( "php $docroot/artisan addperson --database $database --sso_id $user_id --sso_name '$username'");
 
         sleep(1);
@@ -359,7 +359,7 @@ class NetworkController extends Controller
     
       $docroot = str_replace( "testmy", "test", base_path() );
       $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
-      $database = "dev_net_$idfill";
+      $database = env( 'NETWORK_DATABASE_PREFIX' ) . "$idfill";
       shell_exec( "php $docroot/artisan editperson --database $database --sso_id $user_id --sso_name '$username' --sso_permissions '$permissions'");
         sleep(1);
 
@@ -397,7 +397,7 @@ class NetworkController extends Controller
     
       $docroot = str_replace( "testmy", "test", base_path() );
       $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
-      $database = "dev_net_$idfill";
+      $database = env( 'NETWORK_DATABASE_PREFIX' ) . "$idfill";
       shell_exec( "php $docroot/artisan removeperson --database $database --sso_id $user_id");
         sleep(1);
 
