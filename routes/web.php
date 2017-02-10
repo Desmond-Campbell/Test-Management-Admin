@@ -12,6 +12,7 @@
 */
 
 Route::get('/api/send-contact-data', 'ApiController@sendContactData' );
+Route::get('/checklogin', 'NetworkController@checkLogin' );
 
 Auth::routes();
 

@@ -55,6 +55,30 @@ class NetworkController extends Controller
 
   }
 
+  public function checkLogin( Request $r ) {
+
+    if ( Auth::check() ) return redirect( '/' );
+
+    $email = $r->input( 'email' );
+
+    if ( !$email ) return redirect( 'login' );
+
+    $user = User::where( 'email', $email )->first();
+
+    if ( $user ) {
+
+      return redirect( '/login?email=' . $email );
+
+    } else {
+
+      return redirect( '/register?email=' . $email );
+    
+    }
+    
+    return redirect( '/' );
+  
+  }
+
   public function new() {
 
     return view( 'network.create' );
