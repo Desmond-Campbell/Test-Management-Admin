@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/api/send-contact-data', 'ApiController@sendContactData' );
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth'/*, 'userActive', 'forceSSL'*/]], function() {
