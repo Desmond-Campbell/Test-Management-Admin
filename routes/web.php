@@ -12,6 +12,7 @@
 */
 
 Route::get('/checklogin', 'AccountController@checkLogin' );
+Route::get('/.logout', 'AccountController@logout');
 
 Auth::routes();
 
