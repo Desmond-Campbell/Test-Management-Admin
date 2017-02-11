@@ -29,7 +29,7 @@ class DemoNetworkSeeder extends Seeder
 									[
 										{
 											"id": 1,
-											"name": "Vladimir Polochek",
+											"name": "Vladimir Owner",
 											"email": "demouser1@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
@@ -38,7 +38,7 @@ class DemoNetworkSeeder extends Seeder
 										},
 										{
 											"id": 2,
-											"name": "Justin Denton",
+											"name": "Justin Admin",
 											"email": "demouser5@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
@@ -47,7 +47,7 @@ class DemoNetworkSeeder extends Seeder
 										},
 										{
 											"id": 3,
-											"name": "Dimitri Lebedeev",
+											"name": "Dimitri Project",
 											"email": "demouser2@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
@@ -56,7 +56,7 @@ class DemoNetworkSeeder extends Seeder
 										},
 										{
 											"id": 4,
-											"name": "Nasine Bulochev",
+											"name": "Nadine Supervisor",
 											"email": "demouser4@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
@@ -65,7 +65,7 @@ class DemoNetworkSeeder extends Seeder
 										},
 										{
 											"id": 5,
-											"name": "Gladys Truman",
+											"name": "Gladys Tester",
 											"email": "demouser3@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
