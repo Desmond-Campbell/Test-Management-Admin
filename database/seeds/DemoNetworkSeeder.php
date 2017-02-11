@@ -39,7 +39,7 @@ class DemoNetworkSeeder extends Seeder
 										{
 											"id": 2,
 											"name": "Justin Admin",
-											"email": "demouser5@saastest.co",
+											"email": "demouser2@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
 											"created_at": "2017-02-07 01:20:44",
@@ -48,7 +48,7 @@ class DemoNetworkSeeder extends Seeder
 										{
 											"id": 3,
 											"name": "Dimitri Project",
-											"email": "demouser2@saastest.co",
+											"email": "demouser3@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
 											"created_at": "2017-02-07 01:20:44",
@@ -66,7 +66,7 @@ class DemoNetworkSeeder extends Seeder
 										{
 											"id": 5,
 											"name": "Gladys Tester",
-											"email": "demouser3@saastest.co",
+											"email": "demouser5@saastest.co",
 											"password": "$2a$04$mOx7lrk5pYYFHTN5NYEKjemiRu/DfHPSPTptst4gEao.s74.e30uC",
 											"remember_token": "",
 											"created_at": "2017-02-07 01:20:44",
@@ -95,28 +95,28 @@ class DemoNetworkSeeder extends Seeder
 																"id": 2,
 																"network_id": 1,
 																"user_id": 2,
-																"permissions": "[\"view_people\",\"view_projects\"]",
+																"permissions": "[\"view_people\",\"view_projects\",\"create_project\"]",
 																"created_by": 1
 															},
 															{
 																"id": 3,
 																"network_id": 1,
 																"user_id": 3,
-																"permissions": "[\"view_projects\"]",
+																"permissions": "[\"view_projects\",\"create_project\"]",
 																"created_by": 1
 															},
 															{
 																"id": 4,
 																"network_id": 1,
 																"user_id": 4,
-																"permissions": "[\"view_projects\",\"create_project\"]",
+																"permissions": "[\"view_people\",\"view_projects\"]",
 																"created_by": 1
 															},
 															{
 																"id": 5,
 																"network_id": 1,
 																"user_id": 5,
-																"permissions": "[\"view_people\",\"view_projects\",\"create_project\"]",
+																"permissions": "[\"view_projects\"]",
 																"created_by": 1
 															}
 														]
