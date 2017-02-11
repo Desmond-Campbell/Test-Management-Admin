@@ -83,7 +83,7 @@ class Handler extends ExceptionHandler
 
                 header( 'Location: /login' );
                 die;
-                
+
             }
             
             $error['description'] = $description = $lines[0];
@@ -146,7 +146,7 @@ class Handler extends ExceptionHandler
                 
             }
 
-            $template = $class == 'NotFoundHttpException' ? '400' : '500';
+            $template = $class == 'NotFoundHttpException' ? '404' : '500';
 
             print_r(View::make('errors.' . $template, compact( 'reference_number', 'description', 'string', 'class' ) )->render());
 
