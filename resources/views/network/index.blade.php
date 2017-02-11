@@ -50,7 +50,7 @@
 									<td>{{$n->name}}</td>
 									@if ( $n->is_owner ) <td><strong>{{___( "Owner" )}}</strong></td>
 									@else <td>{{___( "Member" )}}</td> @endif
-									<td>@if ( $n->is_owner ) <a href="/network/{{$n->id}}/edit"><i class="fa fa-gear"></i> &nbsp;{{___( "Manage" )}}</a>  &nbsp; &nbsp; <a href="/network/{{$n->id}}/people"><i class="fa fa-group"></i> &nbsp;{{___( "People" )}}</a> @endif &nbsp; &nbsp; <a href="{{$n->url}}"><i class="fa fa-paper-plane"></i> &nbsp;{{___( "Visit" )}}</a></td>
+									<td align="right">@if ( $n->is_owner ) <a href="/network/{{$n->id}}/edit"><i class="fa fa-gear"></i> &nbsp;{{___( "Manage" )}}</a>  &nbsp; &nbsp; @endif @if ( $n->is_owner || pass( 'people.view_people', $n->id ) ) <a href="/network/{{$n->id}}/people"><i class="fa fa-group"></i> &nbsp;{{___( "People" )}}</a> @endif &nbsp; &nbsp; <a href="{{$n->url}}"><i class="fa fa-paper-plane"></i> &nbsp;{{___( "Visit" )}}</a></td>
 								</tr>
 
 							@endforeach

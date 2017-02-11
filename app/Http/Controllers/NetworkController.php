@@ -55,30 +55,6 @@ class NetworkController extends Controller
 
   }
 
-  public function checkLogin( Request $r ) {
-
-    if ( Auth::check() ) return redirect( '/' );
-
-    $email = $r->input( 'email' );
-
-    if ( !$email ) return redirect( 'login' );
-
-    $user = User::where( 'email', $email )->first();
-
-    if ( $user ) {
-
-      return redirect( '/login?email=' . $email );
-
-    } else {
-
-      return redirect( '/register?email=' . $email );
-    
-    }
-    
-    return redirect( '/' );
-  
-  }
-
   public function new() {
 
     return view( 'network.create' );
@@ -164,7 +140,7 @@ class NetworkController extends Controller
 
       $output = shell_exec( "mysql --host $db_host --user=$db_user --password=$db_password -e 'CREATE DATABASE $database' ");
       $output .= "\n\n" . shell_exec( "php $docroot/artisan migratenetwork --domain $domain");
-      $output .= "\n\n" . shell_exec( "php $docroot/artisan networkconfig --database $database --sso_id $user_id --sso_name '$username' --sso_timezone '$timezone' --sso_network '$name'");
+      $output .= "\n\n" . shell_exec( "php $docroot/artisan networkconfig --database $database --sso_id $user_id --sso_name '$username' --sso_timezone '$timezone' --sso_network '$name' --sso_network_id $id");
 
       Networks::find( $id )->update( [ 'status' => 1 ] );
 
@@ -244,7 +220,7 @@ class NetworkController extends Controller
 
     if ( $user ) {
 
-      $person_exists = NetworkRelations::where( 'user_id', $user->id )->count();
+      $person_exists = NetworkRelations::where( 'user_id', $user->id )->where( 'network_id', $id )->count();
 
       if ( $person_exists ) $err = [ 'errors' => ___( 'This person already exists in your network.' ), 'target' => 'email' ];
 
@@ -385,11 +361,12 @@ class NetworkController extends Controller
 
       $username = $user->name;
       $user_id = $user->id;
+      $is_network_owner = stristr( $permissions, "network_owner" ) ? 1 : 0;
     
       $docroot = str_replace( "testmy", "test", base_path() );
       $idfill = str_pad( $id, 10, "0", STR_PAD_LEFT );
       $database = env( 'NETWORK_DATABASE_PREFIX' ) . "$idfill";
-      shell_exec( "php $docroot/artisan editperson --database $database --sso_id $user_id --sso_name '$username' --sso_permissions '$permissions'");
+      shell_exec( "php $docroot/artisan editperson --database $database --sso_id $user_id --sso_name '$username' --sso_permissions '$permissions' --sso_network_owner $is_network_owner ");
         sleep(1);
 
     }

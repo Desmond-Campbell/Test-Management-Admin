@@ -9,7 +9,7 @@ if ( ( $sso_id = get_user_id() ) !== false ) {
 
 }
 
-setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600, "/", "." . env( 'APP_DOMAIN' ) );
+setcookie( config( 'session.global_cookie' ), $global_cookie_value, time() + ( 60 * 60 * 24 ), "/", "." . env( 'APP_DOMAIN' ) );
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -76,6 +76,7 @@ setcookie( config( 'session.global_cookie' ), $global_cookie_value, time()+3600,
                             <li><a href="{{ route('login') }}">{{___( "Login" )}}</a></li>
                             <li><a href="{{ route('register') }}">{{___( "Register" )}}</a></li>
                         @else
+                            <li><a href="/account">{{___( "Account" )}}</a></li>
                             <li><a href="/networks">{{___( "Networks" )}}</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

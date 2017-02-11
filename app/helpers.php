@@ -63,3 +63,35 @@ function try_json_decode( $string ) {
   return $object;
 
 }
+
+function orgpass( $args ) {
+
+  return \App\Police::check( [ 'keystring' => "network.$args", 'quickcheck' => true ] );
+
+}
+
+function pass( $args, $network_id ) {
+
+  $args = [ 'keystring' => "network.$args", 'quickcheck' => true, 'network_id' => $network_id ];
+
+  return \App\Police::check( $args );
+
+}
+
+function block( $args, $project_id ) {
+
+  return !pass( $args, $project_id );
+
+}
+
+function orgblock( $args, $project_id ) {
+
+  return !orgpass( $args, $project_id );
+
+}
+
+function police( $args ) {
+
+  return \App\Police::check( $args );
+
+}

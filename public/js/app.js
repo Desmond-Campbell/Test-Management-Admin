@@ -22,3 +22,9 @@ function to( u ) {
   location.assign( u );
 
 }
+
+function _tt( text ) {
+
+	return text;
+	
+}

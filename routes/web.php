@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/api/send-contact-data', 'ApiController@sendContactData' );
-Route::get('/checklogin', 'NetworkController@checkLogin' );
+Route::get('/checklogin', 'AccountController@checkLogin' );
 
 Auth::routes();
 
@@ -40,6 +39,12 @@ Route::group(['middleware' => ['auth'/*, 'userActive', 'forceSSL'*/]], function(
 	Route::get('/network/{network_id}/person/{id}/edit', 'NetworkController@editPerson');
 	Route::post('/network/{network_id}/person/{id}/update', 'NetworkController@updatePerson');
 	Route::delete('/network/{network_id}/person/{id}/remove', 'NetworkController@removePerson');
+
+	// Account
+
+	Route::get('/account', 'AccountController@index' );
+	Route::get('/account/get', 'AccountController@getAccount' );
+	Route::post('/account/update', 'AccountController@update' );
 
 });
 

@@ -25,7 +25,7 @@
 						</div>
 						<div flex="70" class="padding border-left">
 
-							<a href="/network/{{$network->id}}/person/new" class="btn btn-success">{{___( "Add a Person" )}} &nbsp;<i class="fa fa-user-plus"></i></a><br /><br />
+							@if ( pass( 'people.create_person', $network->id ) ) <a href="/network/{{$network->id}}/person/new" class="btn btn-success">{{___( "Add a Person" )}} &nbsp;<i class="fa fa-user-plus"></i></a> @else <a href="javascript:;" class="btn btn-default" title="{{___("You do not have permission to add people.")}}" disabled="disabled">{{___( "Add a Person" )}} &nbsp;<i class="fa fa-user-plus"></i></a>  @endif <br /><br />
 
 							<table class="table">
 
