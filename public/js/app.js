@@ -28,3 +28,9 @@ function _tt( text ) {
 	return text;
 	
 }
+
+function getconfirm() {
+
+  return confirm( _tt( 'Are you sure?' ) );
+
+}

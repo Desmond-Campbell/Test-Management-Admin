@@ -7,6 +7,8 @@ app.controller('EditAccessCtrl', ['$scope', '$http', '$timeout', function ( $sco
 
 	$scope.removePerson = function () {
 
+		if ( !getconfirm() ) return;
+
 		$id = $scope.network_id;
 		$person_id = $scope.person_id;
 
