@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DemoNetworkSeeder extends Seeder
 {
@@ -11,6 +12,65 @@ class DemoNetworkSeeder extends Seeder
      */
     public function run()
     {
+
+    	// WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	// WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	// Don't truncate in production environment!!!!!!!!!!!!!!!
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	// WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    	//
+    	//
+    	//
+    	//
+    	//
+    	// DO NOT TRUNCATE IN PRODUCTION ENVIRONMENT!!!!!!!!!!!!!!!!!!!!
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+
+    	////// LAST WARNING!!! LEAVE THE FOLLOWING ALONE IF IN PRODUCTION !!!!!!!!!!!!!!!
+
+    	////////////////////////////////////////////////////////////////
+    	////////////////////////////////////////////////////////////////////
+    	////////////////////////////////////////////////////////////////
+    	// DB::table('networks')->truncate();											//////////
+    	// DB::table('network_relations')->truncate();						//////////
+    	// DB::table('users')->truncate();												//////////
+    	////////////////////////////////////////////////////////////////
+    	////////////////////////////////////////////////////////////////////
+    	////////////////////////////////////////////////////////////////
+    	////////////////////////////////////////////////////////////////////
       
       $network = [
 									"id" => 1,
@@ -95,21 +155,21 @@ class DemoNetworkSeeder extends Seeder
 																"id": 2,
 																"network_id": 1,
 																"user_id": 2,
-																"permissions": "[\"view_people\",\"view_projects\",\"create_project\"]",
+																"permissions": "[\"view_people\",\"view_projects\",\"view_all_projects\",\"create_project\"]",
 																"created_by": 1
 															},
 															{
 																"id": 3,
 																"network_id": 1,
 																"user_id": 3,
-																"permissions": "[\"view_projects\",\"create_project\"]",
+																"permissions": "[\"view_projects\",\"create_project\",\"view_all_projects\"]",
 																"created_by": 1
 															},
 															{
 																"id": 4,
 																"network_id": 1,
 																"user_id": 4,
-																"permissions": "[\"view_people\",\"view_projects\"]",
+																"permissions": "[\"view_people\",\"view_projects\",\"create_project\"]",
 																"created_by": 1
 															},
 															{
