@@ -6,6 +6,13 @@ if ( ( $sso_id = get_user_id() ) !== false ) {
     $random = "$random." . dechex( crc32( $random ) );
     $r2 = rand( 700, 720 );
     $global_cookie_value = "$random.$sso_id.$r2";
+    $skey = sha1(microtime().rand());
+
+    if ( !arg( $_COOKIE, config( 'session.la_cookie' ) ) ) {
+
+        setcookie( config( 'session.la_cookie' ), $skey, time() + ( 60 * 60 * 24 ), "/", "." . env( 'APP_DOMAIN' ) );
+
+    }
 
 }
 
