@@ -42,6 +42,9 @@ class AccountController extends Controller
     setcookie( config( 'session.global_cookie' ), 'X', time() - ( 60 * 60 * 24 ), "/", "." . env( 'APP_DOMAIN' ) );
     setcookie( config( 'session.global_cookie' ), '', time() - ( 60 * 60 * 24 ), "/", "demo." . env( 'APP_DOMAIN' ) );
 
+    setcookie( config( 'session.la_cookie' ), 'X', time() - ( 60 * 60 * 24 ), "/", "." . env( 'APP_DOMAIN' ) );
+    setcookie( config( 'session.la_cookie' ), '', time() - ( 60 * 60 * 24 ), "/", "demo." . env( 'APP_DOMAIN' ) );
+
     Auth::logout();
 
     header( "Location: http://www." . env('APP_DOMAIN') );
