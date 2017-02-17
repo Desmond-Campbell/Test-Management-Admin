@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Mail;
 use App\Errors;
 use App\ErrorDetails;
 
@@ -86,15 +87,17 @@ class Handler extends ExceptionHandler
 
             }
             
+            $path = $exception->getFile();
+            
             $error['description'] = $description = $lines[0];
             $error['code'] = $exception->getCode();
             $error['line'] = $exception->getLine();
             $error['message'] = $exception->getMessage();
             $error['class'] = $class;
             $error['codeline'] = $code_line_n;
-            $error['path'] = $exception->getFile();
+            $error['path'] = $path;
             $error['hash'] = sha1( $error['code'] . $error['codeline'] . $error['path'] . $error['class'] );
-            $error['app_name'] = env( 'APP_NAME', 'NA' );
+            $error['app_id'] = env( 'APP_ID', 'NA' );
             $error['app_env'] = env( 'APP_ENV', 'NA' );
             
             $error_details['extract'] = json_encode( $extract );
@@ -124,6 +127,43 @@ class Handler extends ExceptionHandler
 
                 if ( !$repeat ) {
 
+                    $subject = "$class at line $code_line_n in $path";
+
+                    $body = "<h1>{$error['class']}</h1>
+
+                                            <big><big>{$error['description']}</big></big>
+
+                                            <h3>URL:</h3>
+                                            <p>{$error_details['url']}</p>
+
+                                            <h3>IP:</h3>
+                                            <p>{$error_details['ip']}</p>
+
+                                            <h3>Host:</h3>
+                                            <p>" . gethostbyaddr( $error_details['ip'] ) . "</p>
+
+                                            <h3>Browser:</h3>
+                                            <p>{$error_details['browser']}</p>
+
+                                            <div>
+                                            <pre>
+                                                {$error_details['trace']}
+                                            </pre>
+                                            </div>";
+
+                    $email = 'docampbell@gmail.com';
+
+                    try {
+                        $response = Mail::send('errors.email', [ 'subject' => $subject, 'email' => $email, 'error_details' => $error_details, 'error' => $error ], 
+                              function ($message) use ($subject, $email, $error, $error_details ) {
+                                        $message->to($email, null)->subject($subject);
+                                    });
+                    } catch( Exception $e ) {
+
+                        die( '<h1>Server is too busy.</h1><p>A lot of people are connected right now and the server is very busy. Please try again in a few.</p>' );
+
+                    }
+
                     $error_id = Errors::create( $error )->id;
 
                 } else {
@@ -131,6 +171,7 @@ class Handler extends ExceptionHandler
                     $error_id = $repeat->id;
                     $offences = $repeat->offences;
                     $repeat->update( [ 'offences' => $offences + 1 ] );
+                    // ddd( $repeat );
 
                 }
 
@@ -143,7 +184,7 @@ class Handler extends ExceptionHandler
             } else {
 
                 $reference_number = 0;
-                
+
             }
 
             $template = $class == 'NotFoundHttpException' ? '404' : '500';
