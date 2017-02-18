@@ -16,6 +16,7 @@ class CreateTrackerLogTable extends Migration
         Schema::create('tracker_log', function (Blueprint $table) {
             $table->increments('id');
             $table->string( 'hash', 40 );
+            $table->dateTime( 'start_time' );
             $table->string( 'ip', 32 )->nullable();
             $table->string( 'host' )->nullable();
             $table->string( 'uri' );
